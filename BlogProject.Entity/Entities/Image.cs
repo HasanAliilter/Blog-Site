@@ -2,7 +2,7 @@
 
 namespace BlogProject.Entity.Entities
 {
-    public class Image : EntityBase, IEntityBase
+    public class Image : EntityBase
     {
         public string FileName { get; set; }
         public string FileType { get; set; }
