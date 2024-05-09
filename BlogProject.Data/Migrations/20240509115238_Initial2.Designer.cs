@@ -4,6 +4,7 @@ using BlogProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogProject.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240509115238_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,8 @@ namespace BlogProject.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -74,32 +78,6 @@ namespace BlogProject.Data.Migrations
                     b.HasIndex("ImageId");
 
                     b.ToTable("Articles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("6dceb422-7dcc-4bd3-884e-8e6b5749da76"),
-                            CategoryId = new Guid("933b9554-cc1b-4715-97c9-9a1a85db9bc5"),
-                            Content = "Lorem ipsum dolor sit amet",
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(2949),
-                            ImageId = new Guid("f91b9913-a95d-4c7c-a204-e1d32a151c72"),
-                            IsDeleted = false,
-                            Title = "C# Makale",
-                            ViewCount = 13
-                        },
-                        new
-                        {
-                            Id = new Guid("2bd5469c-b027-4ae0-9bc9-5c317cd4414d"),
-                            CategoryId = new Guid("301de9f5-8a72-4738-863e-4104123917f7"),
-                            Content = "Lorem ipsum dolor sit amet mxalknclcnaljcnlscnlxclnaslcnaslcnc sql server",
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(2964),
-                            ImageId = new Guid("efedf71d-350e-4869-bfaa-6d0e24f1014d"),
-                            IsDeleted = false,
-                            Title = "Sql Server Makale",
-                            ViewCount = 25
-                        });
                 });
 
             modelBuilder.Entity("BlogProject.Entity.Entities.Category", b =>
@@ -137,24 +115,6 @@ namespace BlogProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("933b9554-cc1b-4715-97c9-9a1a85db9bc5"),
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(3906),
-                            IsDeleted = false,
-                            Name = "C#"
-                        },
-                        new
-                        {
-                            Id = new Guid("301de9f5-8a72-4738-863e-4104123917f7"),
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(3909),
-                            IsDeleted = false,
-                            Name = "Sql Server"
-                        });
                 });
 
             modelBuilder.Entity("BlogProject.Entity.Entities.Image", b =>
@@ -196,26 +156,6 @@ namespace BlogProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f91b9913-a95d-4c7c-a204-e1d32a151c72"),
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(5906),
-                            FileName = "Images/hasanimage",
-                            FileType = "jpg",
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = new Guid("efedf71d-350e-4869-bfaa-6d0e24f1014d"),
-                            CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 10, 0, 37, 46, 86, DateTimeKind.Local).AddTicks(5910),
-                            FileName = "Images/sqltest",
-                            FileType = "jpg",
-                            IsDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("BlogProject.Entity.Entities.Article", b =>
