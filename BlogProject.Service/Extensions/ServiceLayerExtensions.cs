@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,8 @@ namespace BlogProject.Service.Extensions
     {
         public static IServiceCollection LoadServiceLayerExtension(this IServiceCollection services)
         {
+            var assembly = Assembly.GetExecutingAssembly();
+            services.AddAutoMapper(assembly);
             services.AddScoped<IArticleServices, ArticleServices>();
             return services;
         }

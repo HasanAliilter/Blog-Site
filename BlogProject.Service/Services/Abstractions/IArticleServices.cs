@@ -1,4 +1,5 @@
-﻿using BlogProject.Entity.Entities;
+﻿using BlogProject.Entity.Dtos.Articles;
+using BlogProject.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace BlogProject.Service.Services.Abstractions
 {
     public interface IArticleServices
     {
-        Task<List<Article>> GetAllArticlesAsync();
+        Task<List<ArticleDto>> GetAllArticlesAsync();
     }
 }
