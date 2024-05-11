@@ -1,0 +1,8 @@
+﻿@model List<Article>
+<h1>Admin Area</h1>
+    @foreach (var item in Model)
+    {
+        <h1>@item.Title</h1>
+        <h3>@item.Content</h3>
+        <h3>@item.CreatedBy</h3><br />
+    }
