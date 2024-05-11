@@ -1,11 +1,12 @@
 ﻿using BlogProject.Data.Mapping;
 using BlogProject.Entity.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace BlogProject.Data.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -20,7 +21,8 @@ namespace BlogProject.Data.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.Entity<Article>().Property(x=> x.Title).HasMaxLength(150);
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //Tüm mapping sınıfları tanımlanır
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //Tüm mapping sınıfları tanımlanır, Assembly bulunduğumuz katmanın ismidir
         }
     }
 }
