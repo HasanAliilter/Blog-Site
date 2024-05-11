@@ -1,3 +1,4 @@
+using BlogProject.Service.Services.Abstractions;
 using BlogProject.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,15 +8,18 @@ namespace BlogProject.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IArticleServices articleService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IArticleServices articleService)
         {
             _logger = logger;
+            this.articleService = articleService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var article = await articleService.GetAllArticlesAsync();
+            return View(article);
         }
 
         public IActionResult Privacy()
