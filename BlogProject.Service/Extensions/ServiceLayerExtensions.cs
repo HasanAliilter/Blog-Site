@@ -22,6 +22,7 @@ namespace BlogProject.Service.Extensions
             var assembly = Assembly.GetExecutingAssembly();
             services.AddAutoMapper(assembly);
             services.AddScoped<IArticleServices, ArticleServices>();
+            services.AddScoped<ICategoryServices, CategoryServices>();
             return services;
         }
     }

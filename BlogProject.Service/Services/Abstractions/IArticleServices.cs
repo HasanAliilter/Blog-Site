@@ -11,5 +11,6 @@ namespace BlogProject.Service.Services.Abstractions
     public interface IArticleServices
     {
         Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync();
+        Task CreateArticleAsync(ArticleAddDto articleAddDto);
     }
 }
