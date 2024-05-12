@@ -15,7 +15,7 @@ namespace BlogProject.Data.Mapping
         {
             builder.HasData(new Image
             {
-                Id = Guid.Parse("{F91B9913-A95D-4C7C-A204-E1D32A151C72}"),
+                Id = Guid.Parse("F91B9913-A95D-4C7C-A204-E1D32A151C72"),
                 FileName = "Images/hasanimage",
                 FileType = "jpg",
                 CreatedBy = "Admin Hasan",
