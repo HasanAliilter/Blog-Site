@@ -53,21 +53,21 @@ namespace BlogProject.Data.Migrations
                         new
                         {
                             Id = new Guid("0efe8ca4-1721-488a-ab5c-180a3dc1185a"),
-                            ConcurrencyStamp = "d01c6c9c-4ad0-4af2-b5bf-623f88af847f",
+                            ConcurrencyStamp = "10a94b0c-d256-4d5d-910c-855d2000cfa5",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = new Guid("eb145eca-c68e-4d60-8372-1a04792ff810"),
-                            ConcurrencyStamp = "5d6e7779-29ad-491f-8bdf-37957db9d13f",
+                            ConcurrencyStamp = "eed9d9e8-34c1-4803-89e3-a6eb1c0a1e58",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("602604cf-571d-492d-88cd-b9315d3c9611"),
-                            ConcurrencyStamp = "ace94014-0752-4a21-b462-f98abdb773eb",
+                            ConcurrencyStamp = "ba87e58a-55d3-4b38-9f5d-e66cab6a60c8",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -180,7 +180,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("46e64aa1-ef33-4ade-84fd-e029a5464469"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f0da720-4812-44c6-be50-c63b8425865d",
+                            ConcurrencyStamp = "9a0e25e9-a647-41f3-a72a-ad12997d2afd",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Hasan Ali",
@@ -189,10 +189,10 @@ namespace BlogProject.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAİL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAİL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEoDFXovQ2+V5c+8IXIiGfR0M3OskaN3/AKAUnrZ7BG6IR7kh/vYoW5t+EBqYUVblA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJghOhgD+I5iccL1pv3lwv3UOtRnewstUCXkVKPXyl+Wmn91jeWYi9DHWXre82if3g==",
                             PhoneNumber = "+905331111111",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a76d83c9-0a60-4c39-a509-9b8762c0b054",
+                            SecurityStamp = "d83bebaf-3ba2-464d-a6aa-27873db46cbc",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -200,7 +200,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("b4dbcd88-b32f-4cc5-8ae3-046132c19f56"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2aa1db6a-6a0a-454c-8f2d-fe990b4962f3",
+                            ConcurrencyStamp = "3ba5c7ee-2c4c-42c5-9bf6-fca7f8eb92c1",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Atahan",
@@ -209,10 +209,10 @@ namespace BlogProject.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAİL.COM",
                             NormalizedUserName = "ADMIN@GMAİL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBnQZT72mzV+btgrkh/nBxRGqLkX33cZOwTo2OxcFRBxjUUiS028BYIxp4l5JJGPEQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOpKoUd1IasV8xE7YjQpp87lzRG09ICcxKZ8xRzkNefZKKRPCKt74wa2VuSI5QQOfg==",
                             PhoneNumber = "+905331111112",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f7d9b7b-13a7-4d18-b716-575f22146e7d",
+                            SecurityStamp = "a9c7f3a7-ce53-4760-9828-f1f8973a427a",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -372,11 +372,11 @@ namespace BlogProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("00f88fa5-c636-458d-95a0-f355b782f7ba"),
+                            Id = new Guid("279e1436-0a10-445c-91a6-90eb142faec1"),
                             CategoryId = new Guid("933b9554-cc1b-4715-97c9-9a1a85db9bc5"),
                             Content = "Lorem ipsum dolor sit amet",
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(7401),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(4761),
                             ImageId = new Guid("f91b9913-a95d-4c7c-a204-e1d32a151c72"),
                             IsDeleted = false,
                             Title = "C# Makale",
@@ -385,11 +385,11 @@ namespace BlogProject.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f3a3c2c6-e575-4def-8906-128ecba081e9"),
+                            Id = new Guid("44455573-4138-429f-8a4b-1152831cb07c"),
                             CategoryId = new Guid("301de9f5-8a72-4738-863e-4104123917f7"),
                             Content = "Lorem ipsum dolor sit amet mxalknclcnaljcnlscnlxclnaslcnaslcnc sql server",
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(7412),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(4767),
                             ImageId = new Guid("efedf71d-350e-4869-bfaa-6d0e24f1014d"),
                             IsDeleted = false,
                             Title = "Sql Server Makale",
@@ -439,7 +439,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("933b9554-cc1b-4715-97c9-9a1a85db9bc5"),
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(8321),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(5719),
                             IsDeleted = false,
                             Name = "C#"
                         },
@@ -447,7 +447,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("301de9f5-8a72-4738-863e-4104123917f7"),
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(8324),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(5722),
                             IsDeleted = false,
                             Name = "Sql Server"
                         });
@@ -498,7 +498,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("f91b9913-a95d-4c7c-a204-e1d32a151c72"),
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(8890),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(6246),
                             FileName = "Images/hasanimage",
                             FileType = "jpg",
                             IsDeleted = false
@@ -507,7 +507,7 @@ namespace BlogProject.Data.Migrations
                         {
                             Id = new Guid("efedf71d-350e-4869-bfaa-6d0e24f1014d"),
                             CreatedBy = "Admin Hasan",
-                            CreatedDate = new DateTime(2024, 5, 12, 14, 55, 47, 912, DateTimeKind.Local).AddTicks(8893),
+                            CreatedDate = new DateTime(2024, 5, 12, 16, 59, 21, 969, DateTimeKind.Local).AddTicks(6260),
                             FileName = "Images/sqltest",
                             FileType = "jpg",
                             IsDeleted = false

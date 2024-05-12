@@ -18,12 +18,14 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt => //eðer rol sýnýfýný oluþtu
     opt.Password.RequireNonAlphanumeric = false;
     opt.Password.RequireLowercase = false;
     opt.Password.RequireUppercase = false;
+    opt.Password.RequiredLength = 1;
+
 }).AddRoleManager<RoleManager<AppRole>>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(config =>
 {
     config.LoginPath = new PathString("/Admin/Auth/Login");
-    config.LoginPath = new PathString("/Admin/Auth/Logout");
+    config.LogoutPath = new PathString("/Admin/Auth/Logout");
     config.Cookie = new CookieBuilder
     {
 
