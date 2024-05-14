@@ -55,5 +55,11 @@ namespace BlogProject.Web.Areas.Admin.Controllers
             articleUpdateDto.Categories = categories;
             return View(articleUpdateDto);
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid articleId)
+        {
+            await articleServices.SafeDeleteArticleAsync(articleId);
+            return RedirectToAction("Index", "Article", new { Area = "Admin" });
+        }
     }
 }
