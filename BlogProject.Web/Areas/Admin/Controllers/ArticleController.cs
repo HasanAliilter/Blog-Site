@@ -33,7 +33,7 @@ namespace BlogProject.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Add(ArticleAddDto articleAddDto)
         {
             await articleServices.CreateArticleAsync(articleAddDto);
-            RedirectToAction("Index", "Article", new { Area = "Admin" });
+            return RedirectToAction("Index", "Article", new { Area = "Admin" });
             var categories = await categoryServices.GetAllCategoriesNonDeleted();
             return View(new ArticleAddDto { Categories = categories });
         }
