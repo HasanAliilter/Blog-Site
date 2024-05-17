@@ -2,7 +2,10 @@
 using BlogProject.Data.Repositories.Abstractions;
 using BlogProject.Data.Repositories.Concretes;
 using BlogProject.Data.UnitOfWorks;
+using BlogProject.Entity.Dtos.Images;
+using BlogProject.Entity.Entities;
 using BlogProject.Service.FluentValidations;
+using BlogProject.Service.Helpers.Images;
 using BlogProject.Service.Services.Abstractions;
 using BlogProject.Service.Services.Concretes;
 using FluentValidation;
@@ -25,11 +28,14 @@ namespace BlogProject.Service.Extensions
         public static IServiceCollection LoadServiceLayerExtension(this IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            services.AddAutoMapper(assembly);
+            
             services.AddScoped<IArticleServices, ArticleServices>();
             services.AddScoped<ICategoryServices, CategoryServices>();
+            services.AddScoped<IImageHelper, ImageHelper>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Mevcut olan kullanıcıyı metodlara bazı yönlendirmelerle bulmamızı sağlıyor
+
+            services.AddAutoMapper(assembly);
 
             services.AddControllersWithViews().AddFluentValidation(opt =>
             {
