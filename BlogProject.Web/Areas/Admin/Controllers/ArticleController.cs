@@ -3,8 +3,10 @@ using BlogProject.Entity.Dtos.Articles;
 using BlogProject.Entity.Entities;
 using BlogProject.Service.Extensions;
 using BlogProject.Service.Services.Abstractions;
+using BlogProject.Web.ResultMessages;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace BlogProject.Web.Areas.Admin.Controllers
 {
@@ -15,13 +17,15 @@ namespace BlogProject.Web.Areas.Admin.Controllers
         private readonly ICategoryServices categoryServices;
         private readonly IMapper mapper;
         private readonly IValidator<Article> validator;
+        private readonly IToastNotification toastNotification;
 
-        public ArticleController(IArticleServices articleServices, ICategoryServices categoryServices, IMapper mapper, IValidator<Article> validator)
+        public ArticleController(IArticleServices articleServices, ICategoryServices categoryServices, IMapper mapper, IValidator<Article> validator, IToastNotification toastNotification)
         {
             this.articleServices = articleServices;
             this.categoryServices = categoryServices;
             this.mapper = mapper;
             this.validator = validator;
+            this.toastNotification = toastNotification;
         }
         public async Task<IActionResult> Index()
         {
@@ -43,6 +47,7 @@ namespace BlogProject.Web.Areas.Admin.Controllers
             if (result.IsValid)
             {
                 await articleServices.CreateArticleAsync(articleAddDto);
+                toastNotification.AddSuccessToastMessage(Messages.Article.Add(articleAddDto.Title), new ToastrOptions { Title = "Başarılı!"});
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else
@@ -69,7 +74,8 @@ namespace BlogProject.Web.Areas.Admin.Controllers
 
             if (result.IsValid)
             {
-                await articleServices.UpdateArticleAsync(articleUpdateDto);
+                var title = await articleServices.UpdateArticleAsync(articleUpdateDto);
+                toastNotification.AddSuccessToastMessage(Messages.Article.Update(title), new ToastrOptions { Title = "Başarılı!"});
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else
@@ -84,7 +90,8 @@ namespace BlogProject.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid articleId)
         {
-            await articleServices.SafeDeleteArticleAsync(articleId);
+            var title = await articleServices.SafeDeleteArticleAsync(articleId);
+            toastNotification.AddSuccessToastMessage(Messages.Article.Delete(title), new ToastrOptions { Title = "Başarılı" });
             return RedirectToAction("Index", "Article", new { Area = "Admin" });
         }
     }
