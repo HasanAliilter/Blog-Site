@@ -9,13 +9,14 @@ namespace BlogProject.Entity.Entities
         {
             
         }
-        public Article(string title, string content, Guid categoryId, Guid userId, Guid imageId)
+        public Article(string title, string content, Guid categoryId, Guid userId, string createdBy, Guid imageId )
         {
             Title = title;
             Content = content;
             CategoryId = categoryId;
             UserId = userId;
             ImageId = imageId;
+            CreatedBy = createdBy;
         }
         public string Title { get; set; }
         public string Content { get; set; }

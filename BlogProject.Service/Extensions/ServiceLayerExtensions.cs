@@ -7,6 +7,7 @@ using BlogProject.Service.Services.Abstractions;
 using BlogProject.Service.Services.Concretes;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,6 +28,9 @@ namespace BlogProject.Service.Extensions
             services.AddAutoMapper(assembly);
             services.AddScoped<IArticleServices, ArticleServices>();
             services.AddScoped<ICategoryServices, CategoryServices>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Mevcut olan kullanıcıyı metodlara bazı yönlendirmelerle bulmamızı sağlıyor
+
             services.AddControllersWithViews().AddFluentValidation(opt =>
             {
                 opt.RegisterValidatorsFromAssemblyContaining<ArticleValidator>();
