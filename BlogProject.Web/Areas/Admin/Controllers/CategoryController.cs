@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlogProject.Entity.Dtos.Articles;
 using BlogProject.Entity.Dtos.Categories;
 using BlogProject.Entity.Entities;
 using BlogProject.Service.Extensions;
@@ -50,7 +51,32 @@ namespace BlogProject.Web.Areas.Admin.Controllers
             }
             else
             {
-                BlogProject.Service.Extensions.FluentValidationExtensions.AddToModelState(result, this.ModelState); // Burada BlogProject.Service.Extensions sınıfını kullanıyoruz
+                BlogProject.Service.Extensions.FluentValidationExtensions.AddToModelState(result, this.ModelState);
+                return View();
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid categoryId)
+        {
+            var category = await categoryServices.GetCategoryByGuid(categoryId);
+            var map = mapper.Map<Category, CategoryUpdateDto>(category);
+            return View(map);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(CategoryUpdateDto categoryUpdateDto)
+        {
+            var map = mapper.Map<Category>(categoryUpdateDto);
+            var result = await validator.ValidateAsync(map);
+
+            if (result.IsValid)
+            {
+                var categoryName = await categoryServices.UpdateCategoryAsync(categoryUpdateDto);
+                toastNotification.AddSuccessToastMessage(Messages.Category.Update(categoryName), new ToastrOptions { Title = "Başarılı!" });
+                return RedirectToAction("Index", "Category", new { Area = "Admin" });
+            }
+            else
+            {
+                BlogProject.Service.Extensions.FluentValidationExtensions.AddToModelState(result, this.ModelState);
                 return View();
             }
         }

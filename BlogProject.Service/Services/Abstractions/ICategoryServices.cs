@@ -13,5 +13,6 @@ namespace BlogProject.Service.Services.Abstractions
         public Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
         Task CreateCategoryAsync(CategoryAddDto categoryAddDto);
         Task<Category> GetCategoryByGuid(Guid id);
+        Task<string> UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
     }
 }

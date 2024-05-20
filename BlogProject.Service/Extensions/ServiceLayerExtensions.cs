@@ -1,25 +1,12 @@
-﻿using BlogProject.Data.Context;
-using BlogProject.Data.Repositories.Abstractions;
-using BlogProject.Data.Repositories.Concretes;
-using BlogProject.Data.UnitOfWorks;
-using BlogProject.Entity.Dtos.Images;
-using BlogProject.Entity.Entities;
-using BlogProject.Service.FluentValidations;
+﻿using BlogProject.Service.FluentValidations;
 using BlogProject.Service.Helpers.Images;
 using BlogProject.Service.Services.Abstractions;
 using BlogProject.Service.Services.Concretes;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlogProject.Service.Extensions
 {
@@ -40,7 +27,6 @@ namespace BlogProject.Service.Extensions
             services.AddControllersWithViews().AddFluentValidation(opt =>
             {
                 opt.RegisterValidatorsFromAssemblyContaining<ArticleValidator>();
-                opt.RegisterValidatorsFromAssemblyContaining<CategoryValidator>();
                 opt.DisableDataAnnotationsValidation = true;
                 opt.ValidatorOptions.LanguageManager.Culture = new CultureInfo("tr");
             });

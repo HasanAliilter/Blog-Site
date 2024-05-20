@@ -25,6 +25,10 @@ namespace BlogProject.Web.ResultMessages
             {
                 return $"{categoryName} başlıklı kategori başarıyla eklenmiştir.";
             }
+            public static string Update(string categoryName)
+            {
+                return $"{categoryName} başlıklı kategori başarıyla güncellenmiştir.";
+            }
         }
     }
 }
