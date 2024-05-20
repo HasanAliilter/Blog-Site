@@ -23,11 +23,15 @@ namespace BlogProject.Web.ResultMessages
         public static class Category{
             public static string Add(string categoryName)
             {
-                return $"{categoryName} başlıklı kategori başarıyla eklenmiştir.";
+                return $"{categoryName} isimli kategori başarıyla eklenmiştir.";
             }
             public static string Update(string categoryName)
             {
-                return $"{categoryName} başlıklı kategori başarıyla güncellenmiştir.";
+                return $"{categoryName} isimli kategori başarıyla güncellenmiştir.";
+            }
+            public static string Delete(string categoryName)
+            {
+                return $"{categoryName} isimli kategori başarıyla silinmiştir";
             }
         }
     }

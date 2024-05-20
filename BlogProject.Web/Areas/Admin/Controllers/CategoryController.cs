@@ -4,6 +4,7 @@ using BlogProject.Entity.Dtos.Categories;
 using BlogProject.Entity.Entities;
 using BlogProject.Service.Extensions;
 using BlogProject.Service.Services.Abstractions;
+using BlogProject.Service.Services.Concretes;
 using BlogProject.Web.ResultMessages;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -79,6 +80,13 @@ namespace BlogProject.Web.Areas.Admin.Controllers
                 BlogProject.Service.Extensions.FluentValidationExtensions.AddToModelState(result, this.ModelState);
                 return View();
             }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid categoryId)
+        {
+            var name = await categoryServices.SafeDeleteArticleAsync(categoryId);
+            toastNotification.AddSuccessToastMessage(Messages.Category.Delete(name), new ToastrOptions { Title = "Başarılı" });
+            return RedirectToAction("Index", "Category", new { Area = "Admin" });
         }
 
     }

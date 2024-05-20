@@ -14,5 +14,6 @@ namespace BlogProject.Service.Services.Abstractions
         Task CreateCategoryAsync(CategoryAddDto categoryAddDto);
         Task<Category> GetCategoryByGuid(Guid id);
         Task<string> UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
+        Task<string> SafeDeleteArticleAsync(Guid categoryId);
     }
 }
