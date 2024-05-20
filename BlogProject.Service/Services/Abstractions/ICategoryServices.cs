@@ -1,4 +1,5 @@
 ﻿using BlogProject.Entity.Dtos.Categories;
+using BlogProject.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace BlogProject.Service.Services.Abstractions
     public interface ICategoryServices
     {
         public Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+        Task CreateCategoryAsync(CategoryAddDto categoryAddDto);
+        Task<Category> GetCategoryByGuid(Guid id);
     }
 }

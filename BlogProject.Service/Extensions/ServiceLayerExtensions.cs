@@ -40,6 +40,7 @@ namespace BlogProject.Service.Extensions
             services.AddControllersWithViews().AddFluentValidation(opt =>
             {
                 opt.RegisterValidatorsFromAssemblyContaining<ArticleValidator>();
+                opt.RegisterValidatorsFromAssemblyContaining<CategoryValidator>();
                 opt.DisableDataAnnotationsValidation = true;
                 opt.ValidatorOptions.LanguageManager.Culture = new CultureInfo("tr");
             });

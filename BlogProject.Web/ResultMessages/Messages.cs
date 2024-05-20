@@ -20,5 +20,11 @@ namespace BlogProject.Web.ResultMessages
             }
 
         }
+        public static class Category{
+            public static string Add(string categoryName)
+            {
+                return $"{categoryName} başlıklı kategori başarıyla eklenmiştir.";
+            }
+        }
     }
 }
