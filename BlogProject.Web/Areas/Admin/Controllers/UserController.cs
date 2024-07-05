@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
+using System.Data;
 
 namespace BlogProject.Web.Areas.Admin.Controllers
 {
@@ -72,5 +73,76 @@ namespace BlogProject.Web.Areas.Admin.Controllers
             }
             return View(new UserAddDto { Roles = role });
         }
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid userId)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            var roles = await roleManager.Roles.ToListAsync();
+            var userRole = string.Join("", await userManager.GetRolesAsync(user));
+
+            var map = mapper.Map<UserUpdateDto>(user);
+            map.Roles = roles;
+            map.RoleId = roles.FirstOrDefault(r => r.Name == userRole).Id;
+            return View(map);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(UserUpdateDto userUpdateDto)
+        {
+            var user = await userManager.FindByIdAsync(userUpdateDto.Id.ToString());
+
+            if(user!= null)
+            {
+                var userRole = string.Join("", await userManager.GetRolesAsync(user));
+                var roles = await roleManager.Roles.ToListAsync();
+                if (ModelState.IsValid)
+                {
+                    mapper.Map(userUpdateDto, user);
+                    //user.FirstName = userUpdateDto.FirstName;
+                    //user.LastName = userUpdateDto.LastName;
+                    //user.Email = userUpdateDto.Email;
+                    user.UserName = userUpdateDto.Email;
+                    user.SecurityStamp = Guid.NewGuid().ToString(); //Bununla securitystamp a yeni guid atayıp oturumlarını geçersiz kılarız
+                    var result = await userManager.UpdateAsync(user);
+                    if(result.Succeeded)
+                    {
+                        await userManager.RemoveFromRoleAsync(user, userRole);
+                        var findRole = await roleManager.FindByIdAsync(userUpdateDto.RoleId.ToString());
+                        await userManager.AddToRoleAsync(user,findRole.Name);
+                        toastNotification.AddSuccessToastMessage(Messages.User.Update(userUpdateDto.Email), new ToastrOptions { Title = "Başarılı!" });
+                        return RedirectToAction("Index", "User", new { Area = "Admin" });
+                    }
+                    else
+                    {
+                        foreach (var errors in result.Errors)
+                            ModelState.AddModelError("", errors.Description);
+                        return View(new UserUpdateDto { Roles = roles });
+                    }
+                }
+            }
+
+            return NotFound();
+        }
+        public async Task<IActionResult> Delete(Guid userId)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if(user != null)
+            {
+                //var userRole = string.Join("", await userManager.GetRolesAsync(user)); //identity nin kendi özelliği nedeniyle kullanıcıya bağlı olan tüm şeylerde silinir bu nedenle bu metoda gerek yoktur
+                var result = await userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    //await userManager.RemoveFromRoleAsync(user, userRole); //identity nin kendi özelliği nedeniyle kullanıcıya bağlı olan tüm şeylerde silinir bu nedenle bu metoda gerek yoktur
+                    toastNotification.AddSuccessToastMessage(Messages.User.Delete(user.Email), new ToastrOptions { Title = "Başarılı" });
+                    return RedirectToAction("Index", "User", new { Area = "Admin" });
+                }
+                else
+                {
+                    foreach (var errors in result.Errors)
+                        ModelState.AddModelError("", errors.Description);
+                }
+            }
+            return NotFound();
+        }
+
     }
 }
